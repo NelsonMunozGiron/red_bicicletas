@@ -1,0 +1,10 @@
+var map=L.map('main_map').setView([-34.6012424,-58.3861497],13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+L.marker([-34.6012424,-58.3861497]).addTo(map);
+L.marker([-34.596932,-58.3808287]).addTo(map);
+L.marker([-34.599564,-58.3778777]).addTo(map);
