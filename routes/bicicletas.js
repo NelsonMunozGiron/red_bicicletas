@@ -1,5 +1,4 @@
 var express = require('express');
-//const { bicicleta_list } = require('../controllers/bicicleta');
 var router = express.Router();
 var bicicletaController=require('../controllers/bicicleta');
 
