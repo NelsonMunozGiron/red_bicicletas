@@ -11,7 +11,7 @@ describe('Bicicleta API', () => {
         const mongoDB = 'mongodb://localhost/testdb';
         try {
             await mongoose.connect(mongoDB);
-            console.log('We are connection to test database!');
+            console.log('We are connecting to test database!');
         } catch (err) {
             console.error('Error connecting to DB:', err);
         }
@@ -103,7 +103,7 @@ describe('Bicicleta API', () => {
             var aBici = '{ "id": 10, "color": "rojo", "modelo": "urbana", "lat": -34, "lng": -54 }';
             request.post({
                 headers: headers,
-                url: "http://localhost:5000/api/bicicletas/create",
+                url: base_url + "/create",
                 body: aBici
             }, async function (error, request, body) {
                 expect(request.statusCode).toBe(200);

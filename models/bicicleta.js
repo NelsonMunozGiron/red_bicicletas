@@ -11,7 +11,7 @@ var bicicletaSchema = new Schema({
     }
 })
 
-bicicletaSchema.statics.createInstance = function(code,color,modelo,ubicacion){
+bicicletaSchema.statics.createInstance = function (code, color, modelo, ubicacion) {
     return new this({
         code: code,
         color: color,
@@ -34,16 +34,15 @@ bicicletaSchema.statics.allBicis = async function () {
 };
 
 bicicletaSchema.statics.add = async function (aBici) {
-    await this.create(aBici);
-    return await this.find({});
+    return await this.create(aBici);
 };
 
 bicicletaSchema.statics.findByCode = async function (aCode) {
-    return await this.findOne({code:aCode});
+    return await this.findOne({ code: aCode });
 };
 
 bicicletaSchema.statics.removeByCode = async function (aCode) {
-    return await this.deleteOne({code:aCode});
+    return await this.deleteOne({ code: aCode });
 };
 
 

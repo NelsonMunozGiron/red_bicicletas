@@ -3,31 +3,11 @@ var Bicicleta = require('../../models/bicicleta');
 //const bicicleta = require('../../models/bicicleta');
 
 describe('Testing Bicicletas', function () {
-    /*     beforeEach(function (done) {
-            var mongoDB = 'mongodb://localhost/testdb';
-            mongoose.connect(mongoDB, {});  // useNewUrlParser: true  esta desactualizado
-    
-            const db = mongoose.connection;
-            db.on('error', console.error.bind(console, 'connection error'));
-            db.once('open', function () {
-                console.log('We are connection to test database!');
-                done();
-            });
-        });
-    
-        afterEach(function (done) {
-            Bicicleta.deleteMany({}, function (err, success) {
-                if (err) console.log(err);
-                done();
-            });
-        });
-     */
-
     beforeEach(async function () {
         const mongoDB = 'mongodb://localhost/testdb';
         try {
             await mongoose.connect(mongoDB);
-            console.log('We are connection to test database!');
+            console.log('We are connecting to test database!');
         } catch (err) {
             console.error('Error connecting to DB:', err);
         }
@@ -56,17 +36,6 @@ describe('Testing Bicicletas', function () {
         });
     });
 
-    /*     describe('Bicicleta.allBicis', () => {
-            it('comienza vacia', (done) => {
-                Bicicleta.allBicis(function (err,bicis){
-                expect(true).toBe(true)
-                    //expect(bicis.length).toBe(0);
-                    done();
-                });
-            });
-        });
-     */
-
     describe('Bicicleta.allBicis', () => {
         it('comienza vacia', async () => {
             const bicis = await Bicicleta.allBicis();
@@ -76,8 +45,9 @@ describe('Testing Bicicletas', function () {
 
     describe('Bicicleta.add', () => {
         it('agregar solo una vici', async () => {
-            var aBici=new Bicicleta({code:1,color:"verde",modelo:"urbana"});
-            const bicis = await Bicicleta.add(aBici);
+            var aBici = new Bicicleta({ color: "azul", modelo: "urbana" });
+            await Bicicleta.add(aBici);
+            const bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(1);
             expect(bicis[0].code).toEqual(aBici.code);
         });
@@ -88,12 +58,12 @@ describe('Testing Bicicletas', function () {
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toBe(0);
 
-            var aBici1=new Bicicleta({code:1,color:"verde",modelo:"urbana"});
+            var aBici1 = new Bicicleta({ code: 1, color: "verde", modelo: "urbana" });
             const bicisAdd1 = await Bicicleta.add(aBici1);
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(1);
 
-            var aBici2=new Bicicleta({code:2,color:"rojo",modelo:"urbana"});
+            var aBici2 = new Bicicleta({ code: 2, color: "rojo", modelo: "urbana" });
             const bicisAdd2 = await Bicicleta.add(aBici2);
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(2);
@@ -110,17 +80,17 @@ describe('Testing Bicicletas', function () {
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toBe(0);
 
-            var aBici1=new Bicicleta({code:1,color:"verde",modelo:"urbana"});
+            var aBici1 = new Bicicleta({ code: 1, color: "verde", modelo: "urbana" });
             const bicisAdd1 = await Bicicleta.add(aBici1);
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(1);
 
-            var aBici2=new Bicicleta({code:2,color:"rojo",modelo:"urbana"});
+            var aBici2 = new Bicicleta({ code: 2, color: "rojo", modelo: "urbana" });
             const bicisAdd2 = await Bicicleta.add(aBici2);
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(2);
 
-            const biciRemove=await Bicicleta.removeByCode(1);
+            const biciRemove = await Bicicleta.removeByCode(1);
             bicis = await Bicicleta.allBicis();
             expect(bicis.length).toEqual(1);
 
