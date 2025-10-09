@@ -37,6 +37,14 @@ bicicletaSchema.statics.add = async function (aBici) {
     return await this.create(aBici);
 };
 
+bicicletaSchema.statics.update = async function (aBici) {
+    return await this.findOneAndUpdate(
+        { id: aBici.id },
+        aBici,
+        { new: true }
+    );
+};
+
 bicicletaSchema.statics.findByCode = async function (aCode) {
     return await this.findOne({ code: aCode });
 };

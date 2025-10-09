@@ -23,11 +23,12 @@ exports.bicicleta_create = async function (req, res) {
 }
 
 exports.bicicleta_update = function (req, res) {
-    var bici = Bicicleta.findById(req.body.id);
+    var bici = Bicicleta.findByCode(req.body.id);
     if (bici) {
         bici.color = req.body.color;
         bici.modelo = req.body.modelo;
         bici.ubicacion = [req.body.lat, req.body.lng];
+        Bicicleta.update(bici);
     }
 
     res.status(200).json({
@@ -36,7 +37,7 @@ exports.bicicleta_update = function (req, res) {
 }
 
 exports.bicicleta_delete = async function (req, res) {
-    await Bicicleta.removeById(req.body.id);
+    await Bicicleta.removeByCode(req.body.id);
 
     res.status(204).send();
 }

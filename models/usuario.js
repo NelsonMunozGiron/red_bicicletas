@@ -9,7 +9,6 @@ var usuarioSchema = new Schema({
 
 usuarioSchema.methods.reservar = async function (biciId, desde, hasta) {
     var reserva = new Reserva({ usuario: this._id, bicicleta: biciId, desde: desde, hasta: hasta });
-    console.log(reserva);
     await reserva.save();
 };
 
