@@ -72,11 +72,12 @@ describe('Bicicleta API', () => {
                 body: aBici
             });
 
+            expect(reqCreate.statusCode).toBe(200);
+
             const reqGet = await getRequest({
                 url: base_url,
             });
 
-            expect(reqCreate.statusCode).toBe(200);
             const abicisFind = await Bicicleta.findByCode(100);
             expect(abicisFind.color).toBe('rojo');
 

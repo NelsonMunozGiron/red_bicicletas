@@ -29,7 +29,7 @@ describe('Testing Usuarios', function () {
 
     describe('Cuando un usuario reserva una bici', () => {
         it('debe existir la reserva', async () => {
-            const usuario = new Usuario({ nombre: 'Nelson' })
+            const usuario = new Usuario({ nombre: 'Nelson', password:'prueba', email:'prueba@abc.com' })
             await usuario.save();
             const bicicleta = new Bicicleta({ code: 1, color: "verde", modelo: "urbana" });
             await bicicleta.save();
